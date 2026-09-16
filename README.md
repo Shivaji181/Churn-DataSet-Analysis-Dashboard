@@ -1,140 +1,206 @@
 # Churn-DataSet-Analysis-Dashboard
 
-📊 Customer Churn Data Analysis & Dashboard
+📊 Churn Data Analysis Dashboard
 
-An end-to-end Customer Churn Data Analysis project built to demonstrate practical data analyst skills using Python, Pandas, NumPy, SQL, MySQL, Excel, and Power BI.
 
-The project starts with an unclean customer dataset, performs data cleaning and validation in Python, engineers analytical features, loads the cleaned data into MySQL for SQL analysis, and finally presents customer churn and revenue insights through an interactive Power BI dashboard.
 
-📌 Project Overview
+🔎 Project Overview
 
-Objective:
-Analyze customer behavior, revenue, subscription patterns, and churn to identify useful business insights that can support customer-retention analysis.
+This portfolio project demonstrates a complete customer churn data analytics workflow — from a raw Excel dataset to a cleaned analysis-ready dataset, SQL exploration, and an interactive Power BI dashboard.
 
-End-to-end workflow:
+The project focuses on understanding customer retention, churn behaviour, revenue distribution, subscription patterns, contract types, payment methods, and customer segments.
 
-Raw Excel Dataset → Python Data Cleaning → Feature Engineering → Clean CSV → MySQL → SQL Analysis → Power BI Dashboard
+🔄 End-to-End Workflow
 
-🛠️ Tools & Technologies
+Raw Excel Dataset
+       ↓
+Python + Pandas Cleaning
+       ↓
+Feature Engineering
+       ↓
+Clean CSV Dataset
+       ↓
+MySQL Analysis
+       ↓
+Power BI Dashboard
+       ↓
+Business Insights
 
-Python — Pandas, NumPy
+🖼️ Dashboard Preview
 
-Microsoft Excel — source dataset
+The repository includes the dashboard screenshot shown above so visitors can quickly understand the final output before opening the .pbix file.
 
-MySQL / MySQL Workbench — data storage and SQL analysis
+Dashboard includes
 
-SQL — aggregations, filtering, grouping, churn analysis
+Area
 
-Power BI Desktop — interactive dashboard and visualization
+Visual / KPI
 
-Jupyter Notebook — data cleaning and preprocessing
+📌 Overview
 
-📂 Project Structure
+Total Revenue, Customers, Retained Customers, Churn Rate, Churn Customers
 
-Customer-Churn-Data-Analysis/
-│
-├── Churn dataset cleaning.ipynb     # Data cleaning & preprocessing
-├── Churn_Unclean_Project.xlsx       # Original unclean dataset
-├── Clean_Churn_Data.csv              # Processed dataset
-├── sql.sql                           # SQL analysis queries
-├── PowerBI Dekstop.pbix              # Power BI dashboard
-├── dashboard.png                     # Dashboard screenshot
-└── README.md                         # Project documentation
+💰 Revenue
 
-🧹 Data Cleaning & Preprocessing
+Total Revenue by State
 
-The raw Excel dataset contains 542 records and 18 columns before preprocessing.
+👥 Customer Segments
 
-The Python notebook performs the following tasks:
+Senior Citizen / Adult analysis
 
-Loaded the Excel dataset using Pandas.
+🌐 Services
 
-Inspected the dataset using head(), info(), describe(), and shape.
+Internet Service analysis
 
-Checked missing values across columns.
+📄 Contracts
 
-Detected and removed 7 duplicate records.
+Churn by Contract Type
 
-Replaced dirty placeholder values such as N/A, NULL, and blank strings with NaN.
+💳 Payments
 
-Removed extra spaces from text fields.
+Churn by Payment Method
 
-Standardized categorical values using proper case formatting.
+📦 Subscriptions
 
-Standardized the Churn column to Yes / No.
+Churn by Subscription Type
 
-Converted numeric columns to numeric data types.
+📈 Customer Value
 
-Removed invalid age values outside the 18–100 range.
+Monthly Charges and Customer/Churn relationship
 
-Removed negative values from Monthly_Charges and Total_Charges.
+🎛️ Filters
 
-Converted Last_Interaction_Date to a date format.
+State-based interactive slicer
 
-Filled selected missing values using logical defaults or statistical measures.
+🎯 Objectives
 
-Created additional analytical features.
+Clean and standardize a messy customer dataset.
 
-Exported the processed data to CSV.
+Identify important customer churn patterns.
 
-Loaded the final dataset into MySQL for SQL analysis.
+Measure churn rate and customer retention.
 
-🔧 Feature Engineering
+Analyze revenue across states and customer segments.
 
-The project creates additional fields to support analysis:
+Compare churn across contract, subscription, payment, and internet-service categories.
 
-Customer Value
+Create an interactive dashboard for business-oriented analysis.
 
-df["Customer_Value"] = df["Monthly_Charges"] * df["Tenure_Months"]
+🧰 Tech Stack
 
-Estimates customer value using monthly charges and customer tenure.
+Data Preparation
 
-Monthly Revenue
+Python
 
-df["Monthly_Revenue"] = df["Monthly_Charges"]
+Pandas
 
-Creates a revenue field for reporting and dashboard analysis.
+NumPy
 
-Tenure Group
+Jupyter Notebook
 
-Customers are grouped into:
+Excel / CSV
 
-0-12
+Data Analysis
 
-13-24
+MySQL
 
-25-48
+SQL
 
-49-72
+Visualization & BI
 
-Senior Flag
+Microsoft Power BI
 
-df["Senior_Flag"] = np.where(df["Age"] >= 60, "Senior", "Adult")
+🧹 Data Cleaning Process
 
-Creates an age-based customer segment.
+The Python notebook performs a practical cleaning pipeline:
 
-Churn Flag
+Load the raw Excel dataset.
 
-df["Churn_Flag"] = df["Churn"].map({
-    "Yes": 1,
-    "No": 0
-})
+Inspect structure, statistics, nulls, duplicates and data types.
 
-Converts churn status into a numeric flag for analysis.
+Remove duplicate records.
 
-🗄️ MySQL Analysis
+Replace dirty placeholders such as N/A, NULL and blank values with missing values.
 
-The cleaned dataset is loaded into a MySQL table named:
+Remove unnecessary spaces from text columns.
 
-customer_churn
+Standardize categorical text values.
 
-The SQL analysis includes queries for:
+Standardize the Churn column to Yes / No.
 
-Total customer count
+Convert age, tenure and charge fields to numeric values.
+
+Remove invalid ages outside the 18–100 range.
+
+Remove negative charge values.
+
+Convert the last-interaction column into a date field.
+
+Handle remaining missing values.
+
+Create analytical features.
+
+Validate the final dataset.
+
+Export the cleaned CSV.
+
+Load the cleaned data into MySQL for SQL analysis.
+
+Before → After
+
+Stage
+
+Records
+
+Raw Excel dataset
+
+542
+
+Cleaned dataset
+
+492
+
+Records removed/filtered
+
+50
+
+🧠 Feature Engineering
+
+The cleaned dataset contains additional analysis-friendly fields:
+
+Feature
+
+Logic
+
+Customer_Value
+
+Monthly_Charges × Tenure_Months
+
+Monthly_Revenue
+
+Based on Monthly_Charges
+
+Tenure_Group
+
+0-12, 13-24, 25-48, 49-72 months
+
+Senior_Flag
+
+Senior when age ≥ 60, otherwise Adult
+
+Churn_Flag
+
+Yes → 1, No → 0
+
+🗄️ SQL Analysis
+
+The sql.sql file contains analytical queries covering:
+
+Total customers
 
 Total churned customers
 
-Overall churn rate
+Churn rate
 
 Average monthly charges
 
@@ -144,7 +210,7 @@ Customers by contract type
 
 Customers by internet service
 
-Churn by state
+Churned customers by state
 
 Customers by payment method
 
@@ -152,7 +218,7 @@ Customers by subscription type
 
 Revenue by state
 
-Average monthly charges by contract type
+Average charges by contract
 
 Senior-citizen churn
 
@@ -160,19 +226,17 @@ Top 10 high-value customers
 
 Customers without technical support
 
-Example: Churn Rate
+Example:
 
 SELECT
-ROUND(
-    SUM(CASE WHEN Churn='Yes' THEN 1 ELSE 0 END) * 100 / COUNT(*),
-    2
-) AS Churn_Rate
+    ROUND(
+        SUM(CASE WHEN Churn = 'Yes' THEN 1 ELSE 0 END) * 100 / COUNT(*),
+        2
+    ) AS Churn_Rate
 FROM customer_churn;
 
-This calculates the percentage of customers whose churn status is Yes.
+📊 Power BI Dashboard
 
-
-## 📊 Power BI Dashboard
 
 The interactive Power BI dashboard provides insights into customer churn, revenue, customer retention, monthly charges, contract types, subscription types, internet services, and state-wise revenue.
 
@@ -180,13 +244,9 @@ The interactive Power BI dashboard provides insights into customer churn, revenu
 
 ![Churn DataSet Analysis Dashboard](dashboard.png)
 
-📈 Power BI Dashboard
+The Power BI report provides an interactive business view of the cleaned churn data.
 
-The Power BI dashboard provides an interactive view of customer and churn performance.
-
-Dashboard includes
-
-Payment Method slicer
+Main KPIs
 
 Total Revenue
 
@@ -202,7 +262,9 @@ Average Monthly Charges
 
 Average Tenure
 
-Churn by Senior Citizen
+Main Visuals
+
+Churn by Senior Citizen status
 
 Churn by Internet Service
 
@@ -210,130 +272,78 @@ Total Revenue by State
 
 Churn by Contract Type
 
-Monthly Charges vs. Churn Flag
+Monthly Charges vs Churn
 
 Churn by Subscription Type
 
-Dashboard Screenshot
+Churn by Payment Method
 
+State slicer for interactive filtering
 
+📌 Example Dashboard Snapshot
 
-📊 Final Dataset
+The values visible in the screenshot represent one selected dashboard state. Changing the State filter can change the KPI cards and visual totals.
 
-After preprocessing and filtering, the exported dataset contains 492 customer records and 23 columns, including engineered fields such as:
+📁 Repository Structure
 
-Customer_Value
-Monthly_Revenue
-Tenure_Group
-Senior_Flag
-Churn_Flag
+Churn-Data-Analysis/
+│
+├── README.md
+├── Churn dataset cleaning.ipynb
+├── Churn_Unclean_Project.xlsx
+├── Clean_Churn_Data.csv
+├── sql.sql
+├── PowerBI Dekstop.pbix
+├── abstract-wave-background-colorful-gradient_1040088-493.avif
+│
+└── assets/
+    └── churn-dashboard.png
 
-The cleaned dataset is available in:
+🚀 How to Run
 
-Clean_Churn_Data.csv
+1️⃣ Run Python Data Cleaning
 
-🔍 Sample Analytical Findings
+Install the packages:
 
-Based on the processed dataset:
+pip install pandas numpy openpyxl sqlalchemy pymysql jupyter
 
-492 customer records were exported for analysis.
+Open the notebook:
 
-374 records have Churn = No.
+jupyter notebook "Churn dataset cleaning.ipynb"
 
-116 records have Churn = Yes.
+Run the notebook from top to bottom. It generates Clean_Churn_Data.csv.
 
-2 records still have missing churn values in the exported dataset.
+2️⃣ Run SQL Analysis
 
-Total Total_Charges across the exported records are approximately 24.78M.
+Create a MySQL database and table, then use the cleaned dataset with the queries in sql.sql.
 
-The average monthly charge is approximately 1,359.22.
+CREATE DATABASE churndb;
+USE churndb;
 
-The average tenure is approximately 36.06 months.
+Security: never commit your real database password, API key, or other credentials to GitHub. Use environment variables or a local configuration file instead.
 
-These figures describe the project dataset used in this repository and are not intended to represent a real-world customer population.
-
-🎯 Skills Demonstrated
-
-This project demonstrates practical experience in:
-
-Data cleaning and preprocessing
-
-Exploratory data analysis
-
-Missing-value handling
-
-Duplicate detection and removal
-
-Data validation
-
-Feature engineering
-
-Pandas and NumPy
-
-SQL querying
-
-MySQL database handling
-
-Power BI dashboard development
-
-KPI creation
-
-Data visualization
-
-Business-oriented customer churn analysis
-
-🚀 How to Run the Project
-
-1. Clone the repository
-
-git clone <your-repository-url>
-cd Customer-Churn-Data-Analysis
-
-2. Install Python dependencies
-
-pip install pandas numpy openpyxl sqlalchemy pymysql
-
-3. Run the notebook
-
-Open:
-
-Churn dataset cleaning.ipynb
-
-Run the notebook from top to bottom to reproduce the cleaning and feature-engineering workflow.
-
-4. Load data into MySQL
-
-Create a MySQL database and update the notebook's SQLAlchemy connection with your own local MySQL credentials.
-
-Do not commit passwords or private credentials to GitHub.
-
-5. Run SQL analysis
-
-Open:
-
-sql.sql
-
-in MySQL Workbench and execute the queries against the customer_churn table.
-
-6. Open the Power BI dashboard
+3️⃣ Open the Power BI Report
 
 Open:
 
 PowerBI Dekstop.pbix
 
-and refresh the data source if necessary.
+Refresh the data connection if required, then use the dashboard slicers and visuals to explore the analysis.
 
-📌 Notes
+💡 Key Takeaways from the Project
 
-The original Excel file is intentionally included to show the complete cleaning workflow.
+Demonstrates a realistic ETL-style analytics workflow.
 
-The Power BI file may require local data-source path updates after cloning.
+Combines Python, SQL and Power BI in one project.
 
-The notebook contains the reproducible preprocessing steps used to generate the CSV and MySQL table.
+Shows practical data quality handling before visualization.
 
-The screenshot in dashboard.png shows the dashboard created for the project.
+Converts raw customer fields into useful analytical features.
+
+Produces a dashboard suitable for exploring customer retention and churn patterns.
 
 👤 Author
 
 Shivaji Gorakh Zine
-Computer Engineering Student | Data Analytics | SQL | Python | Power BI
+
+Computer Engineering | Data Analytics & Business Intelligence 
